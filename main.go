@@ -8,7 +8,7 @@ import(
 
 func main() {
 	//args := os.Args[1:]
-	sp, _ := supplier.NewRingedSupplyer(2048, nil)
-	dedup := deduplicator.Deduplicator{storage.NewSimpleStorage(), sp}
+	sp, _ := supplier.NewRingedSupplyer(7212, nil)
+	dedup := deduplicator.NewDeduplicator(storage.NewSimpleStorage(), sp)
 	dedup.Run()
 }
