@@ -24,7 +24,7 @@ func TestRingedSupplierExecutionTime(t *testing.T) {
 
 	buffer = make([]byte, 1)
 	start = time.Now()
-	for i := 0; i < 1024*1024*1024; i++ { // reading 1GB from buffer 1Mb size
+	for i := 0; i < 1024*1024*10; i++ { // reading 10MB from buffer 1Mb size
 		spl.Reader().Read(buffer)
 	}
 	t.Log(time.Now().Sub(start).Nanoseconds())
