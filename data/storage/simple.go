@@ -81,13 +81,16 @@ func (s *simple) Get(from uint64, to uint64) [][]byte {
 }
 
 func (s *simple) Put(data []byte) error {
-	curPage, curByte := len(s.data)-1, 0
-	if curPage != -1 {
-		curByte = len(s.data[curPage]) - 1
-	} else {
+	curPage := len(s.data)-1
+	if len(s.data) == 0 {
 		// appending the first page
 		curPage = 0
 		s.data = append(s.data, make([]byte, 0, dataSliceSizeBytes))
+	}
+
+	curByte := len(s.data[curPage]) - 1
+	if len(s.data[curPage]) == 0 {
+		curByte = 0
 	}
 
 	for dataSliceSizeBytes - curByte < len(data) {
@@ -97,6 +100,7 @@ func (s *simple) Put(data []byte) error {
 		curPage++
 		curByte = 0
 	}
+	s.data[curPage] = append(s.data[curPage], data[:]...)
 
 	return nil
 }
