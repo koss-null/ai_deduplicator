@@ -1,8 +1,5 @@
-package ai_deduplicator
-
-import "os"
+package main
 
 func main() {
-	args := os.Args[1:]
-
+	//args := os.Args[1:]
 }
