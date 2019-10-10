@@ -2,7 +2,6 @@ package io
 
 import (
 	"io"
-	"fmt"
 )
 
 type RingedReader struct {
@@ -51,7 +50,6 @@ func (rr *RingedReader) getInterval(amount int) []byte {
 		}
 	}
 
-	fmt.Println("cursor: ", *rr.cursor)
 	*rr.cursor = start
 	return ret
 }
